@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>图书列表页</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background: url("http://localhost:8080/img.jpg") no-repeat;
+            background-size:100%;
+        }
+        table {
+            width: 500px;
+            height: 100px;
+            background-color: white;
+            opacity:0.9;
+            text-align: center;
+        }
+
+        #tab {
+            margin-top: 2%
+        }
+
+        #find {
+            margin-top: 5%;
+            padding-right: 0;
+        }
+
+        td tr table h1{
+            text-align: center;
+            vertical-align: middle;
+            horiz-align: center;
+        }
+
+
+        pub {
+            width: 16%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="box">
+    <div class="container" align="center">
+        <h1 class="font-weight-bold">图书列表页</h1>
+
+        <div id="find" class="col-md-4 col-md-offset-8">
+
+        </div>
+        <div class="col-md-12">
+            <div class="table">
+                <table  id="tab" class="tabb table table-hover" >
+
+                    <tr id="clone">
+                        <td>封面</td>
+                        <td>书名</td>
+                        <td>作者</td>
+                        <td>数量</td>
+                        <td>出版社</td>
+                        <td>单价</td>
+                        <td>出版日期</td>
+                    </tr>
+                    <tr th:each="item,eee:${books}">
+                        <td><img src="zzz" th:text="暂无封面"></td>
+                        <td th:text="${item.getBookname()}"></td>
+                        <td th:text="${item.getAuthor()}"></td>
+                        <td th:text="${item.getStock()}"></td>
+                        <td th:text="${item.getPublisher()}"></td>
+                        <td th:text="${item.getPer()}"></td>
+                        <td th:text="${item.getPublishday()}"></td>
+                    </tr>
+                </table>
+                <hr>
+                <div class="container" style="text-align: center">
+                    <form action="/c/affix">
+                        <button type="submit" class="btn btn-outline-primary">修改书籍信息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+</body>
+
+</html>
+
