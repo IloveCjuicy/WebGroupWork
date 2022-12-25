@@ -13,10 +13,12 @@ public interface GoodMapper extends BaseMapper<Good>
 {
     @Select("SELECT * FROM good")
     List<Good> findAllGoods();
-    @Insert({"insert into good value(#{goodname},#{price},#{stock})"})
+    @Insert({"insert into good(goodname,price,stock) value(#{goodname},#{price},#{stock})"})
     int insertGood(Good good);
     @Delete({"delete from good where id=${id}"})
     int deleteById(@Param("id")Integer id);
+    @Delete({"delete from good where id >= ${id1} and id <=${id2}"})
+    int BatchDelete(@Param("id1")Object id1,@Param("id2")Object id2);
     @Update({"update good set price=${price},stock=${stock} where id=${id}"})
-    int updateById(@Param("price")Double price,@Param("stock")Integer stock,@Param("id")Integer id);
+    int updateById(@Param("price")Object price,@Param("stock")Object stock,@Param("id")Object id);
 }
